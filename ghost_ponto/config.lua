@@ -1,17 +1,44 @@
 Config = {}
 
--- Locais onde o marcador vai aparecer
-Config.Locais = {
-    { x = 441.83, y = -982.05, z = 30.69, text = "PONTO DA POLÍCIA" }, -- DP Mission Row
-    { x = 299.12, y = -597.51, z = 43.28, text = "PONTO DO HOSPITAL" }, -- Hospital Pillbox
-    { x = -347.11, y = -133.32, z = 39.01, text = "PONTO DA MECÂNICA" }, -- Mecânica LSC
-    -- Copie e cole a linha acima para adicionar mais locais
+-- Configuração de Líderes
+-- [NomeDoCargoLider] = "NomeDoCargoBaseParaVigiar"
+Config.Lideres = {
+    ["Delegado"] = "Civil",
+    ["Coronel"] = "Policia", -- Exemplo, pode adicionar mais
+    ["Diretor"] = "Hospital",
+    ["LiderMecanico"] = "Mecanico",
 }
 
--- Mapeamento manual para casos onde o nome não é apenas "Paisana"..Cargo
--- Exemplo: Se o cargo for "LiderMecanico" e o paisana for "MecanicoFolga"
+-- Locais de Ponto
+Config.Locais = {
+    { 474.47, -1000.69, 30.46, "DEPARTAMENTO DE POLÍCIA" },
+    { -681.56, 328.8, 83.09, "HOSPITAL CENTRAL" },
+    { -347.11, -133.32, 39.01, "MECÂNICA LSC" },
+}
+
+-- Exceções (Job <-> Paisana)
 Config.Excecoes = {
     ["LiderMecanico"] = "PaisanaMecanicoLider",
     ["PaisanaMecanicoLider"] = "LiderMecanico",
-    -- ["CargoNormal"] = "CargoPaisana",
+    -- ["Delegado"] = "PaisanaDelegado",
+    -- ["PaisanaDelegado"] = "Delegado",
+}
+
+-- CONFIGURAÇÃO DE BLIPS (GPS)
+-- Tipos de Blip: 1 (Círculo/Bolinha), 225 (Carro), etc.
+-- Cores: 3 (Azul), 1 (Vermelho), 2 (Verde), 39 (Cinza), etc.
+Config.Blips = {
+    -- Policia Civil (Bolinha Cinza)
+    ["Civil"] = { group = "Civil", blipColor = 39, blipId = 1, name = "Policial Civil" },  
+    
+    -- Policia Militar (Bolinha Azul) - Exemplo, ajuste o nome do grupo se for diferente
+    ["PoliciaMilitar"] = { group = "Policia", blipColor = 3, blipId = 1, name = "Policial Militar" },
+
+    -- Mecanica (Bolinha Verde)
+    ["Mecanico"] = { group = "Mecanico", blipColor = 2, blipId = 1, name = "Mecânico" },
+    ["LiderMecanico"] = { group = "Mecanico", blipColor = 2, blipId = 1, name = "Líder Mecânico" },
+
+    -- Hospital (Bolinha Vermelha)
+    ["Hospital"] = { group = "Hospital", blipColor = 1, blipId = 1, name = "Médico" },
+    ["DiretorHospital"] = { group = "Hospital", blipColor = 1, blipId = 1, name = "Diretor" },
 }
